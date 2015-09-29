@@ -3,7 +3,8 @@ var Bcrypt = require('bcrypt');
 
 var config = {
     auth:true,
-    muninPath:'/var/www/munin'
+    muninPath:'/var/www/munin',
+    port:9080
 };
 
 // Default user is admin with password admin
@@ -37,7 +38,7 @@ var validate = function (request, username, password, callback) {
 
 var server = new Hapi.Server();
 
-server.connection({ port: 9080 });
+server.connection({ port: config.port });
 
 server.register(hapiRegisterArr, function (err) {
 
