@@ -1,0 +1,30 @@
+{
+  "name": "munin-nodejs",
+  "version": "0.0.1",
+  "description": "Munin content server in nodejs based on HAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lschans/munin-nodejs.git"
+  },
+  "keywords": [
+    "munin",
+    "hapi",
+    "nodejs"
+  ],
+  "author": "Lars van der Schans",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/lschans/munin-nodejs/issues"
+  },
+  "homepage": "https://github.com/lschans/munin-nodejs#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "hapi": "^10.1.0",
+    "hapi-auth-basic": "^3.0.0",
+    "inert": "^3.0.1"
+  }
+}
