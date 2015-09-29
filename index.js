@@ -1,15 +1,26 @@
 var Hapi = require('hapi');
-
 var Bcrypt = require('bcrypt');
 
+var config = {
+    auth:true,
+    muninPath:'/var/www/munin'
+};
+
+// Default user is admin with password admin
+// use mkpasswd.js to generate a password hash
 var users = {
-    john: {
-        username: 'john',
-        password: '$2a$10$iqJSHD.BGr0E2IxQwYgJmeP3NvhPrXAeLSaGCj6IR/XU5QtjVu5Tm',   // 'secret'
-        name: 'John Doe',
-        id: '2133d32a'
+    admin: {
+        username: 'admin',
+        password: '$2a$08$iXSSPmjSgraJeoge6oiHger7EEYIF7wdtd4H8StYy7TW3NHrsRpl6',   // 'secret'
+        name: 'admin',
+        id: '0'
     }
 };
+
+var hapiRegisterArr = [];
+
+hapiRegisterArr.push(require('inert'));
+if(config.auth) hapiRegisterArr.push(require('hapi-auth-basic'));
 
 var validate = function (request, username, password, callback) {
 
@@ -28,10 +39,9 @@ var server = new Hapi.Server();
 
 server.connection({ port: 9080 });
 
-server.register([require('inert'), require('hapi-auth-basic')], function (err) {
+server.register(hapiRegisterArr, function (err) {
 
-    server.auth.strategy('simple', 'basic', { validateFunc: validate });
-    server.route({ method: 'GET', path: '/', config: { auth: 'simple' } });
+    if(config.auth) server.auth.strategy('simple', 'basic', { validateFunc: validate });
 
     if (err) {
         throw err;
@@ -42,7 +52,7 @@ server.register([require('inert'), require('hapi-auth-basic')], function (err) {
         path: '/{param*}',
         handler: {
             directory: {
-                path: '/var/www/munin'
+                path: config.muninPath
             }
         }
     });
