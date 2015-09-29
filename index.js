@@ -41,16 +41,16 @@ var server = new Hapi.Server();
 server.connection({ port: config.port });
 
 server.register(hapiRegisterArr, function (err) {
-
-    if(config.auth) server.auth.strategy('simple', 'basic', { validateFunc: validate });
-
     if (err) {
         throw err;
     }
 
+    if(config.auth) server.auth.strategy('simple', 'basic', { validateFunc: validate });
+
     server.route({
         method: 'GET',
         path: '/{param*}',
+        config: { auth: 'simple' },
         handler: {
             directory: {
                 path: config.muninPath
