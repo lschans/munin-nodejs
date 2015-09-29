@@ -4,7 +4,8 @@ var Bcrypt = require('bcrypt');
 var config = {
     auth:true,
     muninPath:'/var/www/munin',
-    port:9080
+    port:9080,
+    reqSSL: false
 };
 
 // Default user is admin with password admin
@@ -22,6 +23,7 @@ var hapiRegisterArr = [];
 
 hapiRegisterArr.push(require('inert'));
 if(config.auth) hapiRegisterArr.push(require('hapi-auth-basic'));
+if(config.reqSSL) hapiRegisterArr.push(require('hapi-require-https'));
 
 var validate = function (request, username, password, callback) {
 
