@@ -8,7 +8,6 @@ Do you like munin for monitoring, but are you not so amused by the classic apach
 * Clone this repo in your /opt (or where ever you like to have it)
 * Do an 'npm install' in the folder to install node modules
 * Change the config on top of the index document to your wishes
-* Use mkpasswd.js ('node mkpasswd.js MYEPICPASSWORD') to generate a password hash.
+* Use mkpasswd.js ('node mkpasswd.js MYEPICPASSWORD') to generate a password hash. Default user and password is admin/admin
 * Start the project using forever, nodemon, or as a service.
 * Sit back and enjoy your stats with a lot less overhead.
-
