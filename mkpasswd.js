@@ -1,4 +1,4 @@
-var Bcrypt = require('bcrypt');
+var Bcrypt = require('bcryptjs');
 
 if(typeof(process.argv[2]) == 'undefined') {
     console.log('mkpasswd requires password as argument');
