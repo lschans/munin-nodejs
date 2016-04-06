@@ -1,5 +1,5 @@
 var Hapi = require('hapi');
-var Bcrypt = require('bcrypt');
+var Bcrypt = require('bcryptjs');
 
 var config = {
     auth:true,
